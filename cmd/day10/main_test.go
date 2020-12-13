@@ -56,4 +56,26 @@ func TestFindAdapterCombos(t *testing.T) {
 			}
 		})
 	})
+
+	t.Run("bottom up", func(t *testing.T) {
+		t.Run("sample 1", func(t *testing.T) {
+			jolts := parse.Ints("input.test.txt", "\n")
+			jolts = sortAndExpandJoltageList(jolts)
+			fmt.Println(jolts)
+			combos := findAdapterCombosBottomUp(jolts)
+			if combos != 19208 {
+				t.Errorf("Expected 19208 but was %d", combos)
+			}
+		})
+
+		t.Run("sample 2", func(t *testing.T) {
+			jolts := parse.Ints("input.test2.txt", "\n")
+			jolts = sortAndExpandJoltageList(jolts)
+			fmt.Println(jolts)
+			combos := findAdapterCombosBottomUp(jolts)
+			if combos != 8 {
+				t.Errorf("Expected 8 but was %d", combos)
+			}
+		})
+	})
 }

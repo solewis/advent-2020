@@ -56,6 +56,20 @@ func findAdapterCombos(jolts []int) int {
 	return product
 }
 
+func findAdapterCombosBottomUp(jolts []int) int {
+	countForAdaptor := map[int]int{len(jolts) - 1: 1}
+	for i := len(jolts) - 2; i >= 0; i-- {
+		combosAtI := 0
+		for j := i + 1; j < i + 4 && j < len(jolts); j++ {
+			if jolts[j] - jolts[i] <= 3 {
+				combosAtI += countForAdaptor[j]
+			}
+		}
+		countForAdaptor[i] = combosAtI
+	}
+	return countForAdaptor[0]
+}
+
 func findCombos(i int, jolts []int) int {
 	// find total paths using dfs
 	if i == len(jolts)-1 {
