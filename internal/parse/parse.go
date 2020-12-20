@@ -12,6 +12,12 @@ func Lines(filename string) []string {
 	return strings.Split(string(dat), "\n")
 }
 
+func String(filename string) string {
+	dat, err := ioutil.ReadFile(filename)
+	check(err)
+	return string(dat)
+}
+
 func Ints(filename, separator string) []int {
 	dat, err := ioutil.ReadFile(filename)
 	if err != nil {
